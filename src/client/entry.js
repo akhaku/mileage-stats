@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Home from 'app/shared/components/Home';
-import routes from 'app/shared/routes';
 
 const data = window.__DATA__.map(d => ({...d, date: new Date(d.date)}));
 
