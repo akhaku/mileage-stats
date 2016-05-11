@@ -11,4 +11,6 @@ html
 
   body
     #app!= content
+    script(type='text/javascript').
+      window.__DATA__ = !{data};
     script(src=baseJsUrl + '/app.js', defer)

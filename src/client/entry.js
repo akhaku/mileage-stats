@@ -1,12 +1,14 @@
 /* eslint-env browser */
+import React from 'react';
 import ReactDOM from 'react-dom';
-import {cloneElement} from 'react';
-import {browserHistory} from 'react-router';
 
+import Home from 'app/shared/components/Home';
 import routes from 'app/shared/routes';
 
-const Router = cloneElement(routes, {
-  history: browserHistory,
-});
+const data = window.__DATA__.map(d => ({...d, date: new Date(d.date)}));
 
-ReactDOM.render(Router, document.getElementById('app'));
+ReactDOM.render((
+  <Home
+    data={data}
+  />
+), document.getElementById('app'));

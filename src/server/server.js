@@ -1,10 +1,12 @@
 /* eslint-env node */
 import express from 'express';
-import {match, RouterContext} from 'react-router';
-
-import Config from 'app/conf/config';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+
+import Config from 'app/conf/config';
+import {getNoteContent} from 'app/server/evernoteService';
+import {parse} from 'app/server/parser';
+import Home from 'app/shared/components/Home';
 import routes from 'app/shared/routes';
 
 const app = express();
@@ -15,17 +17,23 @@ app.set('view engine', 'jade');
 app.use(Config.baseJsPath, express.static('lib/static/js'));
 app.use(Config.baseImagePath, express.static('lib/static/img'));
 
-app.use((req, res, unusedNext) => {
-  match({
-    routes,
-    location: req.originalUrl,
-  }, (error, redirectLocation, renderProps) => {
-    const content = ReactDOMServer.renderToString(<RouterContext {...renderProps}/>);
+app.get('/', (req, res) => {
+  getNoteContent().then(noteContent => {
+    const data = parse(noteContent);
+    const content = ReactDOMServer.renderToString((
+      <Home
+        data={data}
+      />
+    ));
     res.render('index', {
       content,
       baseCssUrl: Config.baseCssUrl,
       baseJsUrl: Config.baseJsUrl,
+      data: JSON.stringify(data),
     });
+  }).catch(err => {
+    console.error('Error fetching note content', err);
+    res.status(500).send('' + err);
   });
 });
 
