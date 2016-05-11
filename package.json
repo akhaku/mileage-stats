@@ -23,8 +23,8 @@
   "author": "Ammar Khaku <ammar.khaku@gmail.com>",
   "license": "Unlicense",
   "engines": {
-    "node": "4.2.3",
-    "npm": "2.14.7"
+    "node": "4.4.4",
+    "npm": "2.15.1"
   },
   "homepage": "https://github.com/akhaku/lease-stats#readme",
   "private": true,
