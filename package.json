@@ -8,7 +8,7 @@
     "dev-server": "node lib/server/webpack",
     "watch-js": "babel src -d lib -w",
     "watch-all": "gulp stream-all",
-    "start": "npm run watch-js & npm run watch-all & npm run dev-server & npm run server",
+    "start": "npm run watch-js & npm run watch-all & npm run dev-server & nodemon lib/server/server.js",
     "babel": "babel src -d lib",
     "copy-all": "gulp copy-all",
     "webpack": "webpack --config src/conf/webpack.config.production.js",
