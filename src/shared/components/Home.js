@@ -13,10 +13,15 @@ export default class Home extends React.Component {
     require('./Home.less');
   }
 
+  _renderDates(data) {
+    return data.map(d => <p key={d.date.getTime()}>{d.date + ' ' + d.mileage}</p>);
+  }
+
   render() {
     return (
       <div className="Component-Home">
         {'Hello World'}
+        {this._renderDates(this.props.data)}
       </div>
     );
   }
