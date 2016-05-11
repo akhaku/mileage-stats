@@ -2,7 +2,7 @@
 import express from 'express';
 import {match, RouterContext} from 'react-router';
 
-import Config from 'app/conf/Config';
+import Config from 'app/conf/config';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import routes from 'app/shared/routes';

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import WebpackDevServer from 'webpack-dev-server';
 import Webpack from 'webpack';
 
-import Config from 'app/conf/Config';
+import Config from 'app/conf/config';
 import WebpackConfig from 'app/conf/webpack.config.dev';
 
 var server = new WebpackDevServer(Webpack(WebpackConfig), {
