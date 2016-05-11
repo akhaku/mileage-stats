@@ -3,7 +3,7 @@
 
 const Config = {
   appPort: process.env.PORT || 3000,
-  oauthToken: process.env.EVERNOTE_DEVELOPER_TOKEN,
+  evernoteDeveloperToken: process.env.EVERNOTE_DEVELOPER_TOKEN,
   baseJsPath: '/static/js',
   baseImagePath: '/static/img',
   noteGuid: '082dff31-628f-4006-8b27-23f043559b3f',
