@@ -12,7 +12,7 @@
     "babel": "babel src -d lib",
     "copy-all": "gulp copy-all",
     "webpack": "webpack --config src/conf/webpack.config.production.js",
-    "server": "nodemon lib/server/server",
+    "server": "node lib/server/server",
     "symlink": "node -e \"var s='../lib',d='node_modules/app',fs=require('fs');fs.exists(d,function(e){e||fs.symlinkSync(s,d,'dir')});\"",
     "postinstall": "npm run babel && npm run copy-all && npm run symlink && npm run webpack && gulp remove-less-from-lib"
   },
@@ -47,7 +47,6 @@
     "less-loader": "^2.2.2",
     "lodash": "^4.3.0",
     "merge-stream": "^1.0.0",
-    "nodemon": "^1.8.1",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-router": "^2.0.0",
@@ -59,6 +58,7 @@
     "babel-loader": "^6.2.2",
     "eslint": "^2.8.0",
     "eslint-plugin-react": "^3.16.1",
+    "nodemon": "^1.8.1",
     "react-hot-loader": "^3.0.0-beta.1",
     "webpack-dev-server": "^1.14.1"
   }
