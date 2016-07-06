@@ -1,6 +1,7 @@
 /* eslint-env browser,node */
 import React from 'react';
 
+import MonthOverMonth from 'app/shared/components/monthOverMonth';
 import OverallMiles from 'app/shared/components/overallMiles';
 
 export default class Home extends React.Component {
@@ -14,6 +15,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className="Component-Home">
+        <MonthOverMonth data={this.props.data}/>
         <OverallMiles data={this.props.data}/>
       </div>
     );

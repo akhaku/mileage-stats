@@ -52,6 +52,7 @@ export default class OverallMiles extends React.Component {
 
   render() {
     const ChartJs = this.ChartJs;
-    return <ChartJs.Line data={getData(this.props.data)} options={chartOptions}/>;
+    return !ChartJs ? <div/>
+      : <ChartJs.Line data={getData(this.props.data)} options={chartOptions}/>;
   }
 }
