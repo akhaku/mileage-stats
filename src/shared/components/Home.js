@@ -2,6 +2,7 @@
 import React from 'react';
 
 import MonthOverMonth from 'app/shared/components/monthOverMonth';
+import Numbers from 'app/shared/components/numbers';
 import OverallMiles from 'app/shared/components/overallMiles';
 
 export default class Home extends React.Component {
@@ -12,9 +13,14 @@ export default class Home extends React.Component {
     })).isRequired,
   };
 
+  componentDidMount() {
+    require('./Home.less');
+  }
+
   render() {
     return (
       <div className="Component-Home">
+        <Numbers data={this.props.data}/>
         <MonthOverMonth data={this.props.data}/>
         <OverallMiles data={this.props.data}/>
       </div>

@@ -2,6 +2,8 @@
 import moment from 'moment';
 import React from 'react';
 
+import {interpolate} from 'app/shared/util';
+
 /**
  * Gets an array of Date objects at the first of every month, from start to end.
  */
@@ -26,10 +28,8 @@ const getData = data => {
       return acc;
     }
     if (dates[dateIndex].isBetween(previousDateMileage.date, dateMileage.date)) {
-      const daysIntoPeriod = moment(dates[dateIndex]).diff(previousDateMileage.date, 'days');
-      const daysInPeriod = moment(dateMileage.date).diff(previousDateMileage.date, 'days');
-      const interpolated = previousDateMileage.mileage + (dateMileage.mileage - previousDateMileage.mileage) * daysIntoPeriod / daysInPeriod;
-      acc.push({date: dates[dateIndex++], mileage: interpolated});
+      acc.push(interpolate(dates[dateIndex], previousDateMileage, dateMileage));
+      dateIndex++;
     } else if (dates[dateIndex].isSame(dateMileage.date)) {
       acc.push({date: dates[dateIndex++], mileage: dateMileage.mileage});
     }

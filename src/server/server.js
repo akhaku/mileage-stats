@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
     });
   }).catch(err => {
     console.error('Error fetching note content', err);
-    res.status(500).send('' + err);
+    res.status(500).set('Content-type', 'text/plain').send('' + err + '\n' + err.stack);
   });
 });
 
