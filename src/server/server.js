@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server';
 import Config from 'app/conf/config';
 import {getNoteContent} from 'app/server/evernoteService';
 import {parse} from 'app/server/parser';
-import Home from 'app/shared/components/Home';
+import Home from 'app/shared/components/home';
 
 const app = express();
 

@@ -14,7 +14,7 @@ export default class Home extends React.Component {
   };
 
   componentDidMount() {
-    require('./Home.less');
+    require('./home.less');
   }
 
   render() {
