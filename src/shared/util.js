@@ -11,7 +11,7 @@ const interpolate = (interpolateTo, point1, point2) => {
   return {date: interpolateTo, mileage};
 };
 
-const endDate = moment('2017-08-10');
+const endDate = moment('2017-08-10').utcOffset('-07:00');
 const targetMileage = 36000;
 
 export {
