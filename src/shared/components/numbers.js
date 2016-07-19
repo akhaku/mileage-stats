@@ -55,7 +55,7 @@ export default class Numbers extends React.Component {
         <p>
           {`Extrapolated (using 90-day average): ${(extrapolated / 1000).toFixed(2)}k`}
         </p>
-        {extrapolated > targetMileage ? getMileageOver(extrapolated.toFixed(0)) : getMileageUnder(extrapolated.ToFixed(0))}
+        {extrapolated > targetMileage ? getMileageOver(extrapolated.toFixed(0)) : getMileageUnder(extrapolated.toFixed(0))}
       </div>
     );
   }
