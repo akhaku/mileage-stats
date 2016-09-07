@@ -20,9 +20,17 @@ const getMileageNinetyDaysAgo = data => {
   return null;
 };
 
-const getExtrapolated = (data, lastNinetyDaysMileage) => {
+const getExtrapolatedFrom90Days = (data, lastNinetyDaysMileage) => {
   const numDays = endDate.diff(data[data.length - 1].date, 'days');
   return data[data.length - 1].mileage + lastNinetyDaysMileage / 90 * numDays;
+};
+
+const getExtrapolated = data => {
+  const firstRecorded = data[0];
+  const lastRecorded = data[data.length - 1];
+  const totalDays = endDate.diff(firstRecorded.date, 'days');
+  const numDays = moment(lastRecorded.date).diff(firstRecorded.date, 'days')
+  return lastRecorded.mileage / numDays * totalDays;
 };
 
 const getMileageOver = extrapolated => {
@@ -48,13 +56,17 @@ export default class Numbers extends React.Component {
   render() {
     const {data} = this.props;
     const ninetyDayMileage = data[data.length - 1].mileage - getMileageNinetyDaysAgo(data).mileage;
-    const extrapolated = getExtrapolated(data, ninetyDayMileage);
+    const extrapolated90 = getExtrapolatedFrom90Days(data, ninetyDayMileage);
+    const extrapolated = getExtrapolated(data);
     return (
       <div className="Component-Numbers">
         <p>{`90-day monthly average: ${ninetyDayMileage / 3}`}</p>
         <p>
-          {`Extrapolated (using 90-day average): ${(extrapolated / 1000).toFixed(2)}k`}
+          {`Extrapolated (using 90-day average): ${(extrapolated90 / 1000).toFixed(2)}k`}
         </p>
+        {extrapolated90 > targetMileage ? getMileageOver(extrapolated90.toFixed(0)) : getMileageUnder(extrapolated90.toFixed(0))}
+        <br/>
+        <p>{`Extrapolated: ${(extrapolated / 1000).toFixed(2)}k`}</p>
         {extrapolated > targetMileage ? getMileageOver(extrapolated.toFixed(0)) : getMileageUnder(extrapolated.toFixed(0))}
       </div>
     );
